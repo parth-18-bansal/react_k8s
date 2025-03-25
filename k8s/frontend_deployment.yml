@@ -1,0 +1,21 @@
+kind: Deployement
+apiVersion: apps/v1
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: parth181201/frontend:latest
+        ports:
+        - containerPort: 8000
+
+      
