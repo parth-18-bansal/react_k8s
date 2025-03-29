@@ -29,4 +29,6 @@ jobs:
           docker build -t react-k8s/frontend:latest -f docker/Dockerfile .
 
       - name: Push Docker Image
-        run: docker push react-k8s/frontend:latest
+        run: |
+          docker tag react-k8s/frontend:latest parth181201/application:latest
+          docker push parth181201/application:latest
