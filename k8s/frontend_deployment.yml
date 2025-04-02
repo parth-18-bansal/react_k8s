@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: parth181201/application:latest #nginx:latest
+        image: parth181201/application:63630c2 #nginx:latest
         ports:
         - containerPort: 80
 
