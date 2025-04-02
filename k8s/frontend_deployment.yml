@@ -1,4 +1,4 @@
-kind: Deployement
+kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: frontend
@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: parth181201/application:latest
+        image: parth181201/application:latest #nginx:latest
         ports:
-        - containerPort: 8000
+        - containerPort: 80
 
       

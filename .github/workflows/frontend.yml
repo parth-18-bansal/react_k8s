@@ -30,5 +30,6 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker tag react-k8s/frontend:latest parth181201/application:latest
-          docker push parth181201/application:latest
+          IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)
+          docker tag react-k8s/frontend:latest parth181201/application:$IMAGE_TAG
+          docker push parth181201/application:$IMAGE_TAG
