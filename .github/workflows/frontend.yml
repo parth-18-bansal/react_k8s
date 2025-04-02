@@ -9,7 +9,7 @@ on:
       - "frontend/**"
 
 jobs:
-  build-and-push:
+  build-push-deploy:
     runs-on: self-hosted
     steps:
       - name: Checkout Repository
@@ -33,3 +33,10 @@ jobs:
           IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)
           docker tag react-k8s/frontend:latest parth181201/application:$IMAGE_TAG
           docker push parth181201/application:$IMAGE_TAG
+      
+      - name: Update Kubernetes Deployment
+        run: |
+          sed -i "s|image: parth181201/application:.*|image: parth181201/application:$IMAGE_TAG|g" k8s/frontend_deployment.yml
+
+      - name: Deploy to the Kubernetes
+        run: kubectl apply -f k8s/frontend_deployment.yml

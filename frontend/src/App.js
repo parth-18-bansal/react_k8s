@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div>
-      <h1>Frontend Connected to Flask API</h1>
+      <h1>Frontend Connected to Flask APIs</h1>
       <p>Flask says: {message}</p>
     </div>
   );
