@@ -40,6 +40,7 @@ jobs:
       
       - name: Update Kubernetes Deployment
         run: |
+          IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)
           sed -i "s|image: parth181201/application:.*|image: parth181201/application:$IMAGE_TAG|g" k8s/frontend_deployment.yml
 
       - name: testing_after
