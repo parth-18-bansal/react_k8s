@@ -6,6 +6,10 @@ nodes:
   extraPortMappings:
   - containerPort: 30005
     hostPort: 3007
-    protocol: TCP
+    protocol: TCP 
 - role: worker
+  extraMounts:
+  - containerPath: /mnt/k8s
+    hostPath: /home/parth/Desktop/k8s
+    readOnly: false
 - role: worker
