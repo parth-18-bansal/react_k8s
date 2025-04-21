@@ -1,0 +1,45 @@
+name: Backend CI/CD
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+
+jobs:
+  build-push-deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Build Docker Image
+        run: |
+          docker build -t react-k8s/backend:latest -f docker/backend/Dockerfile .
+
+      - name: Push Docker Image
+        run: |
+          IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)
+          docker tag react-k8s/backend:latest parth181201/backend_application:$IMAGE_TAG
+          docker push parth181201/backend_application:$IMAGE_TAG
+
+      - name: testing_before
+        run:
+          cat k8s/backend_flask_deployment_service.yml
+      
+      - name: Update Kubernetes Deployment
+        run: |
+          IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)
+          sed -i "s|image: parth181201/application:.*|image: parth181201/application:$IMAGE_TAG|g" k8s/backend_flask_deployment_service.yml
+
+      - name: testing_after
+        run:
+          cat k8s/backend_flask_deployment_service.yml
+
+      - name: Deploy to the Kubernetes
+        run: kubectl apply -f k8s/backend_flask_deployment_service.yml
