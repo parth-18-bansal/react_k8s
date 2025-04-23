@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
 # copy the flask config file
-COPY ../nginx/flask.conf /etc/nginx/conf.d/flask.conf
+COPY ../nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # copy the build folder
 COPY ../frontend/build /usr/share/nginx/html
