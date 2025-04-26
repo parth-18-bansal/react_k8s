@@ -31,7 +31,7 @@ const PersonalInfoForm = () => {
 
     try {
       // Simulate sending data to a backend API
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      const response = await fetch('/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
