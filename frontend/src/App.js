@@ -3,14 +3,14 @@ import PersonalInfoForm from './PersonalInfoForm';
 import './index.css';
 
 function App() {
-  const [message, setMessage] = useState("Loading...");
+  //const [message, setMessage] = useState("Loading...");
 
-  useEffect(() => {
-    fetch("/api/")
-      .then((res) => res.text())
-      .then((data) => setMessage(data))
-      .catch((err) => console.error(err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api/")
+  //     .then((res) => res.text())
+  //     .then((data) => setMessage(data))
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   return (
     <div>
