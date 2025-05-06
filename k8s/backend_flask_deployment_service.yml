@@ -17,6 +17,7 @@ spec:
           image: parth181201/backend_application:63630c2
           ports:
             - containerPort: 5000
+              name: backend-port
 ---
 kind: Service
 apiVersion: v1
@@ -26,7 +27,8 @@ spec:
   selector:
     app: flask-backend
   ports:
-    - protocol: TCP
+    - name: backend-port
+      protocol: TCP
       port: 5000
-      targetPort: 5000
+      targetPort: backend-port
   type: ClusterIP

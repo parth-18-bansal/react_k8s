@@ -17,5 +17,6 @@ spec:
         image: parth181201/application:63630c2 #nginx:latest
         ports:
         - containerPort: 80
+          name: frontend-port
 
       
